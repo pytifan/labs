@@ -30,7 +30,8 @@ public class TestItt {
       // for(int i = 0; i < counts; i++){
            t1.start();
            t1.sleep(sleepTime);
-           t2.start();          
+           t2.start();
+           t1.sleep(sleepTime);
      //  }
    }       
    }
