@@ -6,6 +6,8 @@
 package com.mycompany.algorithms;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -13,12 +15,20 @@ import java.util.Arrays;
  */
 public class QuickSort {
     public static void main(String[] args) {
-        int [] arr = new int[] {1, 4, 25, 3, 17, 5, 21, 2, 4, 6, 7};
-        qickSorter(arr, arr[0], arr.length - 1);
+        int[] arr = new int[] {1, 4, 25, 3, 17, 5, 21, 2, 4, 6, 7};
+        QuickSort quickSort = new QuickSort();
+        quickSort.sort(Arrays.stream(arr).boxed().collect(Collectors.toList()));
         System.out.println("Sorted arr[]: " + Arrays.toString(arr));
     }
-    
-   public static void qickSorter (int [] arr, int start, int end) {
+
+    private void sort(List<Integer> input) {
+
+        int[] array = input.stream().mapToInt(i-> i).toArray();
+
+        qickSorter(array, array[0], array.length - 1);
+    }
+
+   private void qickSorter(int[] arr, int start, int end) {
        int index = partitioner (arr, start, end);
        if (start < index - 1){
            qickSorter(arr, start, index -1);
@@ -28,7 +38,7 @@ public class QuickSort {
        }
    }
    
-    public static int partitioner (int arr [], int start, int end){
+    private static int partitioner(int arr[], int start, int end){
         int i = start, j = end, tmp;
         int midElemValue = arr [(start + end)/2];
         while (i <= j) {
